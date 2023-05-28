@@ -1,0 +1,11 @@
+var wxLink2 = 'http://web.tanganbin.cn/';
+
+var wxHtml2 = '<div class="comwx2div">';
+wxHtml2 += '<p class="comwx2p">';
+wxHtml2 += '<a class="comwx2a" href="' + wxLink2 + '" target="_blank">';
+wxHtml2 += '<img class="comwx2img" src="../quwei_xinchun/img/TB2Z_OAbjgy_uJjSZLeXXaPlFXa_!!815440245.gif">';
+wxHtml2 += '</a>';
+wxHtml2 += '</p>';
+wxHtml2 += '</div>';
+
+document.write(wxHtml2);
