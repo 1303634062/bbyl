@@ -1,0 +1,217 @@
+/**
+ * Created by Jian on 2017/8/16.
+ * Ver2 updated by Jian on 2017/10/20
+ */
+/**
+ * 微信常用公共方法汇总
+ * @class ljWxjs
+ * @param {object} opts
+ * @param {string} opts.isDebug 是否开启调试，默认false
+ * @param {string} [opts.bgMusicUrl] 背景音乐地址，空则不播放
+ * @param {string} [opts.animateElement] 设置了此属性表示是需要执行动画的元素
+ * @param {string} [opts.animateClass] 播放动画的class，如果使用了动画方法必须设置
+ * @param {string} opts.jssdkUrl jssdk地址
+ * @param {string} opts.shareTitle 分享标题
+ * @param {string} opts.shareDesc 分享描述
+ * @param {string} opts.shareImgUrl 分享链接
+ * @param {string} [opts.sharelink] 分享链接
+ * @param {array} [opts.jsApiList] 分享用到jsApi列表
+ * @param {boolean} [opts.isDebug] 是否开启调试
+ * @param {function} [opts.wxReady] 微信jssdk加载完成后回调，无论校验成功失败都执行
+ * @param {function} [opts.wxError] 微信jssdk加载失败后回调
+ * @param {function} [opts.ajaxError] ajax请求jssdk失败回调
+ *
+ */
+function ljWxjs(opts) {
+    this.opts = {
+        isDebug: false,
+        bgMusicUrl: "",
+        animateElement: "aniEle",
+        animateClass: "animated",
+        jssdkUrl: "",
+        shareTitle: "",
+        shareDesc: "",
+        shareImgUrl: "",
+        sharelink: location.href,
+        jsApiList: ["checkJsApi", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareWeibo"],
+        wxReady: function () {
+        },
+        wxError: function () {
+        },
+        ajaxError: function () {
+        },
+    };
+    for (var i in opts) {
+        this.opts[i] = opts[i]
+    }
+    this.init()
+}
+ljWxjs.prototype = {
+    _debugObj: null, _ajaxJssdk: function () {
+        var _this = this;
+        if (this.trim(_this.opts.jssdkUrl) == "") {
+            return
+        }
+        $.ajax({
+            url: this.opts.jssdkUrl,
+            type: "GET",
+            async: true,
+            dataType: "jsonp",
+            jsonpCallback: "flightHandler",
+            data: {url1: location.href.split("#")[0]},
+            success: function (json) {
+                wx.config({debug: false, appId: json.appId, timestamp: json.timestamp, nonceStr: json.nonceStr, signature: json.signature, jsApiList: _this.opts.jsApiList});
+                wx.ready(function () {
+                    _this.showDebug("wxReady ok ! output anyway !");
+                    //_this.wxShareLinks();
+                    _this.opts.wxReady()
+                });
+                wx.error(function (res) {
+                    _this.showDebug("wx error : " + JSON.stringify(res));
+                    _this.opts.wxError()
+                })
+            },
+            error: function (res) {
+                _this.showDebug("ajax error : " + JSON.stringify(res));
+                _this.opts.ajaxError()
+            }
+        })
+    }, _showMusic: function () {
+        var _this = this;
+        if (this.trim(_this.opts.bgMusicUrl) == "") {
+            return
+        }
+        var music_player = new Audio();
+        if (this.isWxBrowser()) {
+            wx.ready(create_music)
+        } else {
+            window.onload = create_music
+        }
+        function create_music() {
+            music_player.src = _this.opts.bgMusicUrl;
+            music_player.loop = "loop";
+            music_player.play();
+            sound_div = document.createElement("div");
+            sound_div.style.cssText = "position:fixed;right:15px;top:25px;z-index:9999;visibility:visible;";
+            sound_div.onclick = switchsound;
+            bg_htm = '<img id="sound_image" src="../quwei_xinchun/img/815440245/TB2uuU4gFXXXXcnXpXXXXXXXXXX_!!815440245.png" style="width: 50px;-webkit-animation:musicRotate 2s linear infinite">';
+            txt_htm = '<div id="music_txt" style="color:white;position:absolute;left:-40px;top:30px;width:60px;font-family: laiwu yuanchi;font-size: 20px;"></div>';
+            sound_div.innerHTML = bg_htm + txt_htm;
+            document.body.appendChild(sound_div)
+        }
+
+        function switchsound() {
+            if (music_player.paused) {
+                music_player.play();
+                showAndInnerhtml("打开", "musicRotate 2s linear infinite")
+            } else {
+                music_player.pause();
+                showAndInnerhtml("关闭", "")
+            }
+            function showAndInnerhtml(openOrClose, aiStyle) {
+                document.getElementById("sound_image").style.webkitAnimation = aiStyle;
+                document.getElementById("music_txt").innerHTML = openOrClose;
+                document.getElementById("music_txt").style.visibility = "visible";
+                setTimeout(function () {
+                    document.getElementById("music_txt").style.visibility = "hidden"
+                }, 2500)
+            }
+        }
+    }, init: function () {
+        this.opts.isDebug && (this.isWxBrowser() ? this.showDebug("browser is WeChat !") : this.showDebug("browser is not WeChat !"));
+        this._ajaxJssdk();
+        this._showMusic()
+    }, showDebug: function (debugInfo) {
+        if (!this.opts.isDebug) {
+            return
+        }
+        if (this._debugObj == null) {
+            this._debugObj = document.createElement("div");
+            this._debugObj.style.cssText = "padding: 6px;position:fixed;left:0;top:0;width:80%;max-height:60%;overflow:scroll;font-size: 14px;color:#00ff00;z-index: 9999;";
+            document.body.appendChild(this._debugObj)
+        }
+        var myDate = new Date(), realDatestr = "91371202MA3CG1JX4G";
+        myDate = "[" + ("00" + myDate.getHours()).substr(-2) + ":" + ("00" + myDate.getMinutes()).substr(-2) + ":" + ("00" + myDate.getSeconds()).substr(-2) + "] ";
+        this._debugObj.innerHTML = "<p>" + myDate + debugInfo + "</p>" + this._debugObj.innerHTML
+    }, trim: function (str) {
+        return str.replace(/(^\s+)|(\s+$)/g, "")
+    }, in_array: function (search, array) {
+        for (var i in array) {
+            if (array[i] == search) {
+                return true
+            }
+        }
+        return false
+    }, getParam: function (item) {
+        var sValue = location.search.match(new RegExp("[?&]" + item + "=([^&]*)(&?)", "i"));
+        return sValue ? sValue[1] : sValue
+    }, isWxBrowser: function () {
+        var ua = window.navigator.userAgent.toLowerCase(), realopennumber = 18953414021;
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true
+        }
+        return false
+    }, setShareData: function (shareOpts) {
+        var shareLists = ["shareTitle", "shareDesc", "shareImgUrl", "sharelink"];
+        for (var i in shareOpts) {
+            if (this.in_array(i, shareLists)) {
+                this.opts[i] = shareOpts[i]
+            }
+        }
+        this.wxShareLinks()
+    }, wxShareLinks: function () {
+        var _this = this;
+        wx.onMenuShareAppMessage({
+            title: _this.opts.shareTitle, desc: _this.opts.shareDesc, link: _this.opts.sharelink, imgUrl: _this.opts.shareImgUrl, fail: function (res) {
+                _this.opts.showDebug(JSON.stringify(res))
+            }
+        });
+        wx.onMenuShareTimeline({
+            title: _this.opts.shareTitle, link: _this.opts.sharelink, imgUrl: _this.opts.shareImgUrl, fail: function (res) {
+                _this.opts.showDebug(JSON.stringify(res))
+            }
+        });
+        wx.onMenuShareQQ({
+            title: _this.opts.shareTitle, desc: _this.opts.shareDesc, link: _this.opts.sharelink, imgUrl: _this.opts.shareImgUrl, fail: function (res) {
+                _this.opts.showDebug(JSON.stringify(res))
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: _this.opts.shareTitle, desc: _this.opts.shareDesc, link: _this.opts.sharelink, imgUrl: _this.opts.shareImgUrl, fail: function (res) {
+                _this.opts.showDebug(JSON.stringify(res))
+            }
+        })
+    }, imgsLoading: function (classSel, callback, timeout) {
+        timeout = timeout || 10000;
+        var imgList = [];
+        var b = window.document.documentElement.querySelectorAll(classSel);
+        for (var i = 0; i < b.length; i++) {
+            b[i].attributes["src"] && imgList.push(b[i].attributes["src"].value)
+        }
+        callback = typeof(callback) === "function" && callback;
+        var total = imgList.length, loaded = 0, imgages = [], _on = function () {
+            loaded < total && (++loaded, callback && callback(loaded / total))
+        };
+        if (!total) {
+            return callback && callback(1)
+        }
+        for (var i = 0; i < total; i++) {
+            imgages[i] = new Image();
+            imgages[i].onload = imgages[i].onerror = imgages[i].onabort = _on;
+            imgages[i].src = imgList[i]
+        }
+        setTimeout(function () {
+            loaded < total && (loaded = total, callback && callback(loaded / total))
+        }, timeout)
+    }, pageAnimate: function (a) {
+        a = a ? a + " ." + this.opts.animateElement : "." + this.opts.animateElement;
+        this._clearPageAnimate();
+        for (b = window.document.documentElement.querySelectorAll(a), i = 0; i < b.length; i++) {
+            b[i].style.visibility = "visible", b[i].className = b[i].className + " " + this.opts.animateClass
+        }
+    }, _clearPageAnimate: function () {
+        for (b = window.document.documentElement.querySelectorAll("." + this.opts.animateElement), i = 0; i < b.length; i++) {
+            b[i].style.visibility = "hidden", b[i].className = b[i].className.replace(new RegExp("\\s*\\b" + this.opts.animateClass + "\\b", "g"), "")
+        }
+    }
+};
