@@ -1,0 +1,13 @@
+var zslink = 'http://www.tanganbin.cn/zanzhu';
+
+var zsHtml = '<div class="comzsdiv">';
+zsHtml += '<p class="comzsp1">';
+zsHtml += '<a href="' + zslink + '" class="comzsp1a">赞赏</a>';
+zsHtml += '</p>';
+zsHtml += '<p class="comzsp2">';
+zsHtml += '<a href="' + zslink + '" class="comzsp2a">觉的好，就打个赏呗</a>';
+zsHtml += '</p>';
+zsHtml += '<p class="comzsp3"><a href="javascript:;" class="comzsp3a">188</a>人赞赏</p>';
+zsHtml += '</div>';
+
+document.write(zsHtml);
