@@ -1,0 +1,273 @@
+@charset "UTF-8";
+html,body{width:100%;height: 100%;}
+body{font-size: 30px;background: #000000;min-width: 320px;max-width: 500px;overflow: hidden;margin: 0 auto;}
+#pages {position: relative;width: 100%;height: 100%;margin: 0 auto;overflow: visible;border-radius: 15px;z-index: 1;touch-action: pan-x;}
+
+section{position: relative;width: 100%;backface-visibility: hidden;}
+p{text-align: center;line-height: 1.8em;}
+.aniEle {visibility: hidden;}
+.smallimg{display: inline-block;width: 30px;}
+
+#pages .page {position: relative;width: 100%;height: 100%;overflow: hidden;background: #000;}
+
+/******************************华丽的分割线***************************************************/
+.page1{}
+
+#p1Wrap{position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 11;}
+.p1hongding{position: absolute;width: 100%;left: 0;top: 0px;z-index: 12;}
+.p1menr,.p1shizir{transform: rotateY(180deg);}
+.p1mendiv{position: absolute;bottom: 30px;width: 250px;z-index: 11;}
+#p1menldiv{left: 0;}
+#p1menrdiv{right: 0;}
+
+#p1kaimen{position: absolute;width: 160px;left: 170px;top: 50%;z-index: 19;border-radius: 100px;animation:ring 2s ease .6s both infinite;}
+
+.p1shizidiv{position: absolute;bottom: 0px;width: 220px;z-index: 13;}
+.p1shizildiv{left: -20px;}
+.p1shizirdiv{right: -20px;}
+
+.p1leftDoor{transform-origin: 0% 40%;animation:p1leftDoor 6s ease .6s both 1;}
+.p1rightDoor{transform-origin: 100% 40%;animation:p1rightDoor 6s ease .6s both 1;}
+    @keyframes p1leftDoor {
+        0%{transform:none;}
+        100%{transform:perspective(600px) rotateY(70deg);}
+    }
+    @keyframes p1rightDoor {
+        0%{transform: none;}
+        100%{transform:perspective(600px) rotateY(-70deg);}
+    }
+
+.fangda{animation:fangda 2.2s ease .2s both 1;}
+    @keyframes fangda {
+        0%{transform: none;}
+        100%{transform:scale(2);}
+    }
+.p1menkan{position: absolute;width: 100%;left: 0;bottom: 0;z-index: 12;}
+
+#enterdoor{position: absolute;width: 100%;left: 0;top: 30%;text-align: center;}
+#p1yuanyi{display: inline-block;position: relative;width: 280px;margin-top: 30px;animation:jello 2s ease .6s both infinite;}
+
+.p1bg{position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 0;}
+/*.p1bg.animated {animation: fangda 2s ease .2s both 1;}*/
+#p1content{position: absolute;width: 100%;height: 100%;left: 0;top: 0;display: none;}
+
+.p1ding,.p1deng{position: absolute;}
+.p1ding{width: 100%;left: 0;top: -5px;z-index: 19;animation: slideInDown 1.2s ease .2s both 1;}
+.p1deng{width: 400px;left: 50px;top: 30px;z-index: 18;animation: fadeIn 1.2s ease 1.2s both 1;}
+
+.p1dingl,.p1dingr{position: absolute;width: 120px;top: 0;}
+.p1dingl{left: 0px;animation: p1dingl 1.8s ease .6s both 1;}
+.p1dingr{right: 0px;animation: p1dingr 1.8s ease .6s both 1;}
+    @keyframes p1dingl {
+        0%{transform:translateX(-100%);}
+        100%{transform: none;}
+    }
+    @keyframes p1dingr {
+        0%{transform:translateX(100%);}
+        100%{transform: none;}
+    }
+
+.kaimenhongdiv{position: absolute;width: 100%;height: 30px;left: 0;top:25%;}
+.p1goudiv{position: absolute;width: 200px;left: 150px;top: -80px;animation: fadeInDown 1.2s ease 1.4s both 1;z-index: 12;}
+/*.p1gou.animated{animation: rubberBand 1.2s ease 2.6s both 2;}*/
+.p1kaimenhong{position: absolute;width: 400px;left: 50px;top: 0;animation: zoomIn 1.2s ease 1.2s both 1;}
+
+.p1worddiv{position: absolute;width: 100%;left: 0;top:46%;z-index: 19;animation: fadeIn 1.2s ease 3s both 1;}
+.p1word{animation: ring 1.2s ease 3.8s both 2;}
+
+.p1btmdiv{position: absolute;width: 100%;height: 20px;left: 0px;bottom: 20px;}
+.p1guangl,.p1guangr{position: absolute;width: 250px;bottom: 50px;}
+.p1guangl{left: 0;animation: fadeIn .4s ease 2.6s both 1;}
+.p1guangr{right: 0;animation: fadeIn .4s ease 2.6s both 1;}
+
+.p1wutai{position: absolute;width: 460px;left: 20px;bottom: 0;animation: fadeIn 1.2s ease 2.2s both 1;}
+
+/******************************华丽的分割线***************************************************/
+.page2{}
+.p2lameidiv{position: absolute;width: 300px;top: 20px;right: 0px;animation: fadeInRight 1.6s ease-out .2s both 1;z-index: 24;}
+.p2bghuadiv{position: absolute;width: 300px;top: 90px;right: 90px;font-family: '91371202MA3CG1JX4G';animation: fadeIn 1.6s ease-out 2s both 1;z-index: 25;}
+.p2bghua{/*animation: fadeIn 1s ease 1s both 1;*/}
+
+.p2yuediv{position: absolute;width: 100px;top: 30px;left: 160px;animation: fadeIn 2s ease-out .4s both 1;border-radius: 50%;box-shadow: 0px 0px 20px #fff000;}
+
+.p2kongmddiv{position: absolute;animation: p2kongmddiv 5s ease 2s both infinite;}
+.p2kongmddiv1{width: 40px;left: 60px;top: -100px;animation-delay: .2s;}
+.p2kongmddiv2{width: 50px;left: 100px;top: -80px;animation-delay: 3.2s;}
+.p2kongmddiv3{width: 60px;left: 160px;top: -100px;animation-delay: 1.2s;}
+    @keyframes p2kongmddiv {
+        0%{transform: translate(-400%,800%) scale(1);}
+        100%{transform: translate(0,0) scale(.6);}
+    }
+/*.p2kongmd{animation: p2kongmd 3s ease 2s both infinite;transform-origin: top center;}
+    @keyframes p2kongmd {
+        0%,100%{transform: none;}
+        50%{transform: rotate(8deg);}
+    }*/
+
+.p2denglongdiv{position: absolute;width: 25px;top: 126px;right: 70px;animation: fadeIn 1s ease-out 2s both 1;z-index: 22;}
+.p2denglong{animation: swing 5s ease 2s both infinite;transform-origin: top center;}
+
+.p2worddiv{position: absolute;width: 100%;left: 0px;top: 26%;z-index: 29;}
+.p2word1{animation: fadeInLeft 1.4s ease-out 1s both 1;}
+.p2word2{animation: fadeInRight 1.4s ease-out 1.4s both 1;}
+
+.p2dildiv,.p2dirdiv{position: absolute;bottom: 10px;}
+.p2dildiv{left: 80px;width: 140px;animation: zoomIn 2.2s ease 2.2s both 1;transform-origin: bottom center;}
+.p2dirdiv{right: 60px;width: 160px;animation: fadeIn 2.2s ease-out 3s both 1;}
+
+/******************************华丽的分割线***************************************************/
+.page3{}
+.p3dingdiv{position: absolute;width: 100%;left: 0;top:0;animation: fadeInDown 1s ease-out .2s both 1;z-index: 38;}
+
+.p3top{position: absolute;width: 420px;left: 40px;top: 40px;animation: fadeIn 1.6s ease .4s both 1;}
+.p3worddiv{position: absolute;width: 100%;left: 0;top: 34%;animation: zoomIn 1.6s ease-out 1.2s both 1;}
+.p3word{animation: rubberBand 1.2s ease 2.4s both 1;}
+
+.p3picdiv{position: absolute;width: 100%;left: 0;bottom: 50px;animation: fadeInUp 1s ease-out 2s both 1;}
+
+.p3didiv{position: absolute;width: 100%;left: 0;bottom:5px;animation: fadeInUp 1s ease-out .2s both 1;z-index: 38;}
+
+/******************************华丽的分割线***************************************************/
+.page4{}
+.p4topl{position: absolute;width: 300px;left: 0;top: 10px;animation: fadeInLeft 1.6s ease-out .6s both 1;z-index: 31;}
+.p4qidian{position: absolute;width: 300px;right: 10px;top: 80px;animation: fadeInRight 1.6s ease 1.2s both 1;z-index: 31;}
+
+.p4worddiv{position: absolute;width: 100%;left: 0;top: 32%;animation: twisterInUpRight 1.6s ease 1.8s both 1;}
+.p4word{animation: ring 1.2s ease 3.2s both 1;}
+
+.p4btmdiv{position: absolute;width: 100%;left: 0;bottom: 50px;text-align: center;animation: fadeIn 1.6s ease 3s both 1;}
+.p4btm{display: inline-block;width: 80px;}
+
+/******************************华丽的分割线***************************************************/
+.page5{}
+
+.p5topldiv,.p5toprdiv{position: absolute;width: 120px;top: 0;z-index: 52;}
+.p5topldiv{left: 0px;animation: fadeInLeft 1.2s ease-out .4s both 1;}
+.p5toprdiv{right: 0px;animation: fadeInRight 1.2s ease-out .4s both 1;}
+
+.p5denglongldiv,.p5denglongrdiv,.p5denglongsldiv,.p5denglongsrdiv{position: absolute;width: 100px;top: 2px;z-index: 12;animation: fadeIn 1.6s ease 1.2s both 1;}
+.p5denglongldiv{left: 20px;}
+.p5denglongrdiv{right: 20px;}
+.p5denglongsldiv,.p5denglongsrdiv{width: 60px;z-index: 11;}
+.p5denglongsldiv{left: 110px;}
+.p5denglongsrdiv{right: 110px;}
+.p5denglongl,.p5denglongr,.p5denglongsl,.p5denglongsr{animation: swing 5s ease 2.2s both infinite;transform-origin: 50% 0;}
+
+.p5yuandiv{position: absolute;width: 300px;left: 100px;top: 70px;animation: fadeIn 1.6s ease 2s both 1;}
+.p5yuan{animation: musicRotate 8s linear 2s both infinite;}
+.p5meidiv{position: absolute;width: 340px;left: 80px;top: 60px;animation: zoomIn 1.6s ease 2.4s both 1;z-index: 55;}
+
+.p5worddiv{position: absolute;width: 100%;left: 0;top: 48%;animation: fadeInLeft 1.6s ease 3s both 1;}
+.p5word{animation: flip 1.2s ease 4.2s both 1;}
+
+/******************************华丽的分割线***************************************************/
+.page6{}
+
+.p6topfudiv{position: absolute;width: 140px;animation: fadeInDown 1.6s ease .2s both 1;}
+.p6topfudiv1{left: -60px;top: -55px;z-index: 65;animation-delay: 1s;}
+.p6topfudiv2{left: 40px;top: -90px;z-index: 66;animation-delay: 1.2s;}
+.p6topfudiv3{left: 120px;top: -80px;z-index: 65;animation-delay: .4s;}
+.p6topfudiv4{left: 200px;top: -90px;z-index: 64;animation-delay: .6s;}
+.p6topfudiv5{left: 290px;top: -80px;z-index: 65;animation-delay: .8s;}
+.p6topfudiv6{left: 390px;top: -80px;z-index: 66;animation-delay: .2s;}
+
+.p6yddiv{position: absolute;width: 100px;top: 20px;animation: fadeIn 1.2s ease 2s both 1;z-index: 68;}
+.p6huandiv{left: 20px;}
+.p6dudiv{left: 140px;}
+.p6yuandiv{left: 260px;}
+.p6dandiv{left: 380px;}
+.p6huan,.p6du,.p6yuan,.p6dan{animation: p6yd 1.2s linear .2s both infinite;}
+    @keyframes p6yd {
+        0%,50%,100%{transform: none;}
+        25%{transform: rotate(5deg);}
+        75%{transform: rotate(-5deg);}
+    }
+
+.p6xiaohaidiv1,.p6xiaohaidiv2{position: absolute;width: 200px;top: 140px;animation: fadeIn 2s ease 1.6s both 1;}
+.p6xiaohaidiv1{left: 40px;}
+.p6xiaohaidiv2{right: 40px;}
+.p6xiaohail,.p6xiaohair{animation: wobble 3s linear .2s both infinite;}
+
+.p6worddiv{position: absolute;width: 100%;left: 0;top: 46%;animation: zoomIn 2s ease 2s both 1;}
+.p6word{animation: rubberBand 1.2s ease 3s both 1;}
+
+/******************************华丽的分割线***************************************************/
+.page7{}
+
+.p7yanhuadiv{position: absolute;width: 160px;top: 40px;}
+.p7yanhuadiv1{left: 30px;animation: p7yanhuadiv 3s ease-out .2s both infinite;}
+.p7yanhuadiv2{right: 30px;animation: p7yanhuadiv 3s ease-out 1.2s both infinite;}
+    @keyframes p7yanhuadiv {
+        0%,20%{transform: scale(0);opacity: 1;}
+        80%{transform: none;opacity: 1;}
+        100%{transform: none;opacity: 0;}
+    }
+
+.p7kuailediv{position: absolute;width: 460px;left: 20px;top: 100px;animation: twisterInUpRight 2s ease .6s both 1;}
+.p7kuaile1{position: relative;}
+.p7kuaile2{position: absolute;left: 0;top: 0;animation: p7kuaile2 3s ease 2s both infinite;}
+    @keyframes p7kuaile2 {
+        0%{transform: none;opacity: 1;}
+        50%,100%{transform: scale(1.4);opacity: 0;}
+    }
+
+.p7worddiv{position: absolute;width: 100%;left: 0;top: 46%;animation: zoomIn 2s ease 1.6s both 1;}
+.p7word{animation: rubberBand 1.2s ease 3s both 1;}
+
+.p7btmldiv,.p7btmrdiv{position: absolute;bottom: 45px;animation: fadeIn 2s ease 3.2s both 1;}
+.p7btmldiv{width: 101px;left: 50px;}
+.p7btmrdiv{width: 111px;right: 50px;}
+.p7btml,.p7btmr{animation: ring 1.2s ease 4s both infinite;}
+
+.p7btmdiv{position: absolute;width: 500px;left: 0px;bottom: 0px;animation: fadeInUp 2s ease .8s both 1;z-index: 7;}
+
+/******************************华丽的分割线***************************************************/
+.page8{}
+.comwx2img{width: 250px;}
+.p8wx{position: absolute;width: 100%;left: 0;top: 80px;animation: fadeIn 1.6s ease .6s both 1;}
+
+.subform{position: absolute;display: block;width: 100%;left: 0;top: 280px;animation: fadeInUp 1.6s ease 1.2s both 1;}
+.i8nametop{width: 80%;margin: 0 auto;}
+.subform p{padding: 10px 0;}
+.xname,.subbtn{width: 70%;border: 2px solid #ff0006;font-size: .9em;-webkit-appearance: none;}
+.xname{height: 55px;line-height: 55px;border-radius: 27px;padding-left: 20px;color: #000;}
+.subbtn{height: 60px;line-height: 60px;border-radius: 30px;background: #ff0000;color: #ffff00;font-weight: bold;}
+
+.p8zs{position: absolute;width: 100%;left: 0;top: 580px;animation: fadeIn 1.6s ease 1.8s both 1;}
+
+/******************************华丽的分割线***************************************************/
+#bgmusicdiv{position: absolute;z-index: 991;width: 50px;right: 20px;top: 30px;}
+.bgmusicRun{animation: musicRotate 2s linear infinite;}
+#bgmusicStatus{position: absolute;display: block;width: 60px;white-space:nowrap;text-align: right;left: -120%;bottom: 0;font-size: .6em;display: none;}
+
+#upicon{position: absolute;z-index: 991;width: 36px;left: 231px;height: 25px;bottom: 2%;animation: upicon 1.8s ease both infinite;}
+.iconleft,.iconright{position: absolute;font-family: 'laiwu yuanchi';width: 25px;height: 10px;background: #fff;border-radius: 5px;box-shadow: 1px -1px 1px #646464;}
+.iconleft{left: 0;transform: rotate(-50deg)}
+.iconright{right: 0;transform: rotate(50deg)}
+    @keyframes upicon{
+        0%{transform: translateY(0px);opacity:0;}
+        50%,60%{transform: translateY(-25px);opacity:1;}
+        80%,100%{transform: translateY(-40px);opacity:0;}
+    }
+.pageRate{position: absolute;left:0;bottom: 0;width: 100%;z-index: 990;}
+.pageRate #rateNum{width: 100%;height: 32px;text-align: right;font-size: .8em;color: #fff;}
+.pageRate .rateWrap{width: 100%;height: 5px;background: rgb(255, 157, 77);}
+.pageRate #rate{display: block;width: 0%;height: 5px;background: rgb(255, 0, 1);}
+
+/*img load css*/
+#mod_loading {position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: #000000;z-index: 99999;}
+#mod_loading .yuandanWrap{width: 100%;margin-top: 50%;font-family: '18953414021';text-align: center;color: #feff00;}
+#mod_loading .yuandanzi{display: inline-block;width: 30px;height: 30px;line-height: 30px;animation: yuandanzi 2s ease .4s both infinite;}
+        @keyframes yuandanzi{
+            0%{transform: none;}
+            50% {transform: scale3d(.3, .3, .3) rotate3d(0,0,1,360deg)}
+            60% {transform: scale3d(1.1, 1.1, 1.1)}
+            70% {transform: scale3d(.9, .9, .9)}
+            80% {transform: scale3d(1.03, 1.03, 1.03)}
+            90% {transform: scale3d(.97, .97, .97)}
+            to {transform: scaleX(1)}
+        }
+#mod_loading .progressWrap{position: relative;height: 20px;width: 70%;margin: 25px auto 0 auto;border: 2px solid #ff9c00;;background: #feff00;border-radius: 10px;overflow: hidden;}
+#mod_loading #progress{display: block;background: #ffbb00;width: 0%;height: 20px;}
+#mod_loading .percentWrap{width: 100%;margin: 25px auto 0 auto;text-align: center;color: #fff500;font-size: 1em;}
+#mod_loading #percent{}
